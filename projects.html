@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - AK</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            --dark-bg: #0f172a;
+            --light-bg: #f8fafc;
+            --accent-color: #6366f1;
+            --text-dark: #1e293b;
+            --text-light: #f1f5f9;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--light-bg);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        /* Logo Design */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 8px rgba(36, 60, 167, 0.5));
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-8px) rotate(5deg);
+            }
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        /* Navigation Menu */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover {
+            color: #667eea;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: var(--primary-gradient);
+            transition: all 0.4s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .login-btn,
+        .signup-btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+
+        .login-btn {
+            border: 2px solid #667eea;
+            color: #667eea;
+        }
+
+        .login-btn:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .signup-btn {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-top: 80px;
+            padding: 120px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .page-header p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out 0.2s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Page Content */
+        .page-content {
+            padding: 100px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-image {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            color: #667eea;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-dark);
+        }
+
+        .project-info p {
+            font-size: 1.1rem;
+            color: #64748b;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .project-info .tech-stack span {
+            display: inline-block;
+            background: #f0f4f8;
+            color: #475569;
+            padding: 0.4rem 0.7rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Additional Coding Section */
+        .coding-section {
+            margin-top: 4rem;
+            padding: 3rem 0;
+            background: #f9f9f9;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .coding-section h2 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .coding-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            padding: 0 2rem;
+        }
+
+        .coding-skills span {
+            background: #e0e7ff;
+            color: #3b82f6;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        /* Video Links Section */
+        .video-section {
+            margin-top: 4rem;
+            padding: 3rem 0;
+            background: #f4f4f4;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .video-section h2 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .video-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 0 2rem;
+        }
+
+        .video-link {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .video-link:hover {
+            transform: translateY(-3px);
+        }
+
+        .video-link a {
+            text-decoration: none;
+            color: var(--accent-color);
+            font-weight: 500;
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        /* Image Gallery Section */
+        .image-gallery {
+            margin-top: 4rem;
+            padding: 3rem 0;
+            background: #f0f0f0;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .image-gallery h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* Bigger images */
+            gap: 24px;
+            padding: 0 2rem;
+        }
+
+        .image-item {
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 220px;
+            /* Set fixed height for uniformity */
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            border-radius: 12px;
+        }
+
+        .image-item:hover img {
+            transform: scale(1.08);
+        }
+
+
+        /* Footer */
+        .footer {
+            background: var(--dark-bg);
+            color: var(--text-light);
+            padding: 5rem 0 2rem;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .footer-logo svg {
+            width: 48px;
+            height: 48px;
+            filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+        }
+
+        .footer-logo-text {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--secondary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-text {
+            color: #94a3b8;
+            line-height: 1.8;
+            max-width: 350px;
+        }
+
+        .footer-links h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary-gradient);
+            border-radius: 3px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(99, 102, 241, 0.15);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-gradient);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                flex-direction: column;
+                background-color: white;
+                width: 80%;
+                height: 100vh;
+                text-align: center;
+                transition: 0.4s;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+                padding: 6rem 0;
+                justify-content: flex-start;
+                gap: 3rem;
+                z-index: 900;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .page-header h1 {
+                font-size: 2.8rem;
+            }
+
+            .page-header p {
+                font-size: 1.2rem;
+            }
+
+            .video-links-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .project-image {
+                font-size: 2rem;
+                padding: 1.5rem;
+            }
+
+            .project-info h3 {
+                font-size: 1.4rem;
+            }
+
+            .project-info p {
+                font-size: 1rem;
+            }
+
+            .coding-skills span {
+                font-size: 0.9rem;
+            }
+
+            .video-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .image-gallery h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h1 class="logo-text">AK Digital</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="ai.html" class="nav-link">AI Solutions</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="login.html" class="nav-link login-btn">Login</a></li>
+                <li><a href="signup.html" class="nav-link signup-btn">Sign Up</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Our Projects</h1>
+            <p>Showcasing innovation and excellence in digital solutions</p>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="container">
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>E-Commerce Platform</h3>
+                        <p>A comprehensive online shopping platform with advanced features including real-time
+                            inventory, payment processing, and customer analytics. Built with a focus on scalability and
+                            user experience.</p>
+                        <div style="margin-top: 1rem;" class="tech-stack">
+                            <span style="background: #667eea; color: white;">React</span>
+                            <span style="background: #764ba2; color: white;">Node.js</span>
+                            <span style="background: #ff6b6b; color: white;">MongoDB</span>
+                        </div>
+                        <img src="ecommerce_platform.jpg" alt="E-Commerce Platform"
+                            style="width: 100%; margin-top: 1rem; border-radius: 8px;">
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>Mobile Banking App</h3>
+                        <p>Secure and user-friendly mobile banking application with biometric authentication,
+                            transaction history, and budget tracking features. Designed for seamless financial
+                            management on the go.</p>
+                        <div style="margin-top: 1rem;" class="tech-stack">
+                            <span style="background: #667eea; color: white;">React Native</span>
+                            <span style="background: #764ba2; color: white;">Firebase</span>
+                            <span style="background: #ffd93d; color: black;">Stripe API</span>
+                        </div>
+                        <img src="mobile_banking_app.jpg" alt="Mobile Banking App"
+                            style="width: 100%; margin-top: 1rem; border-radius: 8px;">
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>AI Content Generator</h3>
+                        <p>Advanced AI-powered content generation tool that creates high-quality articles, social media
+                            posts, and marketing copy. Utilizes natural language processing for human-like text
+                            generation.</p>
+                        <div style="margin-top: 1rem;" class="tech-stack">
+                            <span style="background: #667eea; color: white;">Python</span>
+                            <span style="background: #764ba2; color: white;">TensorFlow</span>
+                            <span style="background: #4ecdc4; color: white;">OpenAI API</span>
+                        </div>
+                        <img src="ai_content_generator.jpg" alt="AI Content Generator"
+                            style="width: 100%; margin-top: 1rem; border-radius: 8px;">
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>Business Analytics Dashboard</h3>
+                        <p>Real-time business intelligence dashboard with interactive charts, KPI tracking, and
+                            predictive analytics capabilities. Empowers data-driven decision-making for businesses of
+                            all sizes.</p>
+                        <div style="margin-top: 1rem;" class="tech-stack">
+                            <span style="background: #667eea; color: white;">Vue.js</span>
+                            <span style="background: #764ba2; color: white;">D3.js</span>
+                            <span style="background: #ff6b6b; color: white;">PostgreSQL</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>Interactive Learning Platform</h3>
+                        <p>Gamified e-learning platform with progress tracking, interactive quizzes, and collaborative
+                            learning features. Makes education engaging and effective for learners of all ages.</p>
+                        <div style="margin-top: 1rem;" class="tech-stack">
+                            <span style="background: #667eea; color: white;">Angular</span>
+                            <span style="background: #764ba2; color: white;">Three.js</span>
+                            <span style="background: #ffd93d; color: black;">Socket.io</span>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>Cloud Infrastructure Manager</h3>
+                        <p>Comprehensive cloud resource management tool with automated scaling, cost optimization, and
+                            security monitoring. Simplifies the complexities of cloud infrastructure management.</p>
+                        <div style="margin-top: 1rem;" class="tech-stack">
+                            <span style="background: #667eea; color: white;">Docker</span>
+                            <span style="background: #764ba2; color: white;">Kubernetes</span>
+                            <span style="background: #4ecdc4; color: white;">AWS</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="coding-section">
+                <div class="container">
+                    <h2>Coding Skills Highlighted in Our Projects</h2>
+                    <div class="coding-skills">
+                        <a href="https://www.youtube.com/watch?v=PkZNo7MFNFg"
+                            target="_blank"><span>JavaScript</span></a>
+                        <a href="https://www.youtube.com/watch?v=rfscVS0vtbw" target="_blank"><span>Python</span></a>
+                        <a href="https://www.youtube.com/watch?v=bMknfKXIFA8" target="_blank"><span>React</span></a>
+                        <a href="https://www.youtube.com/watch?v=Oe421EPjeBE" target="_blank"><span>Node.js</span></a>
+                        <a href="https://www.youtube.com/watch?v=2OHbjep_WjQ" target="_blank"><span>Angular</span></a>
+                        <a href="https://www.youtube.com/watch?v=YrxBCBibVo0" target="_blank"><span>Vue.js</span></a>
+                        <a href="https://www.youtube.com/watch?v=0-S5a0eXPoc" target="_blank"><span>React
+                                Native</span></a>
+                        <a href="https://www.youtube.com/watch?v=UB1O30fR-EE" target="_blank"><span>HTML</span></a>
+                        <a href="https://www.youtube.com/watch?v=yfoY53QXEnI" target="_blank"><span>CSS</span></a>
+                        <a href="https://www.youtube.com/watch?v=HXV3zeQKqGY" target="_blank"><span>SQL</span></a>
+                        <a href="https://www.youtube.com/watch?v=fR4HjTH_fTM" target="_blank"><span>NoSQL</span></a>
+                        <a href="https://www.youtube.com/watch?v=fqMOX6JJhGo" target="_blank"><span>Docker</span></a>
+                        <a href="https://www.youtube.com/watch?v=X48VuDVv0do"
+                            target="_blank"><span>Kubernetes</span></a>
+                        <a href="https://www.youtube.com/watch?v=ulprqHHWlng" target="_blank"><span>AWS</span></a>
+                        <a href="https://www.youtube.com/watch?v=9kRgVxULbag" target="_blank"><span>Firebase</span></a>
+                        <a href="https://www.youtube.com/watch?v=tPYj3fFJGjk"
+                            target="_blank"><span>TensorFlow</span></a>
+                        <a href="https://www.youtube.com/watch?v=dOxUroR57xs" target="_blank"><span>OpenAI
+                                API</span></a>
+                        <a href="https://www.youtube.com/watch?v=8jvoTV54nXw" target="_blank"><span>D3.js</span></a>
+                        <a href="https://www.youtube.com/watch?v=Q7AOvWpIVHU" target="_blank"><span>Three.js</span></a>
+                        <a href="https://www.youtube.com/watch?v=ZKEqqIO7n-k" target="_blank"><span>Socket.io</span></a>
+                        <a href="https://www.youtube.com/watch?v=Nt9fxWq5qg0" target="_blank"><span>Stripe
+                                API</span></a>
+                        <a href="https://www.youtube.com/watch?v=USjZcfj8yxE" target="_blank"><span>Git</span></a>
+                        <a href="https://www.youtube.com/watch?v=Q-BpqyOT3a8" target="_blank"><span>RESTful
+                                APIs</span></a>
+                        <a href="https://www.youtube.com/watch?v=ed8SzALpx1Q" target="_blank"><span>GraphQL</span></a>
+                        <a href="https://www.youtube.com/watch?v=srvUrASNj0s" target="_blank"><span>Responsive
+                                Design</span></a>
+                        <a href="https://www.youtube.com/watch?v=_QeKz-nFhbY" target="_blank"><span>UI/UX
+                                Design</span></a>
+                        <a href="https://www.youtube.com/watch?v=Z9QbYZh1YXY" target="_blank"><span>Agile
+                                Development</span></a>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-section">
+                <div class="container">
+                    <h2>Project Showcase Videos</h2>
+                    <div class="video-links-grid">
+                        <div class="video-link">
+                            <a href="https://www.youtube.com/watch?v=Fj3yKlbIFFQ" target="_blank">
+                                E-Commerce Platform Demo (Part 1)
+                            </a>
+                        </div>
+                        <div class="video-link">
+                            <a href="https://www.youtube.com/watch?v=-FkfWykK2Ow" target="_blank">
+                                Headless E-Commerce Demo (Cloud Run)
+                            </a>
+                        </div>
+                        <div class="video-link">
+                            <a href="https://www.youtube.com/watch?v=SyVvMAHSCQg" target="_blank">
+                                Multi‑Vendor E-Commerce SaaS Demo
+                            </a>
+                        </div>
+                        <div class="video-link">
+                            <a href="https://www.youtube.com/watch?v=Zogfckwrb7c" target="_blank">
+                                Mobile Banking App Features (Strech)
+                            </a>
+                        </div>
+                        <div class="video-link">
+                            <a href="https://www.youtube.com/watch?v=JxBCAl38l7E" target="_blank">
+                                Mobile Banking App Demo (John Hancock – Twine)
+                            </a>
+                        </div>
+                        <div class="video-link">
+                            <a href="https://www.youtube.com/watch?v=25-vUSB_N-0" target="_blank">
+                                Syndicate Bank Mobile Banking App
+                            </a>
+                        </div>
+                        <div class="video-link">
+                            <a href="https://www.youtube.com/watch?v=ObyhXgD53jE" target="_blank">
+                                E-Commerce Microservices Architecture Demo
+                            </a>
+                        </div>
+                        <div class="video-link">
+                            <a href="https://www.youtube.com/watch?v=KtuPL4KzVSA" target="_blank">
+                                Snapp Mobile Banking App Demo
+                            </a>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="image-gallery">
+                    <div class="container">
+                        <h2>Project Image Gallery</h2>
+                        <div class="image-grid">
+                            <div class="image-item">
+                                <img src="https://static.vecteezy.com/system/resources/previews/046/996/176/non_2x/circuit-board-machine-learning-and-artificial-intelligence-are-processing-big-data-and-information-hi-tech-blue-background-vector.jpg"
+                                    alt="Project UI Screenshot 1">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <h3>AK</h3>
+                        <p>Building the future, one line of code at a time.</p>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="projects.html">Projects</a></li>
+                            <li><a href="ai.html">AI Solutions</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-social">
+                        <h4>Follow Us</h4>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/cyber123822"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 AK. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+        <script>
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }));
+        </script>
+</body>
+
+</html>
